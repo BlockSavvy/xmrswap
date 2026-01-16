@@ -1068,3 +1068,112 @@ npx eas build --platform ios --clear-cache
 **🔥 Ready to launch anonymous atomic swaps? Your privacy-focused exchange is prepared for deployment!**
 
 **⚠️ Remember: Always test with small amounts first and never risk more than you can afford to lose.**
+
+---
+
+## 🏪 **Haveno DEX Integration - Now Available!**
+
+### 🎯 **What We Just Implemented:**
+
+#### **✅ Real Haveno DEX Integration**
+
+- **haveno-ts library**: Official Haveno TypeScript client
+- **Daemon Connection**: Connects to local Haveno daemon
+- **P2P Trading**: Real decentralized offers and trades
+- **Automatic Liquidity**: Self-sustaining XMR reserves
+
+#### **🔧 How It Works:**
+
+```javascript
+// 1. User sends BTC to our wallet
+// 2. System checks XMR balance (< 5 XMR minimum)
+// 3. Haveno daemon fetches real P2P offers
+const offers = await client.getOffers({
+  direction: 'BUY',    // Buy XMR with BTC
+  currencyCode: 'BTC'
+});
+
+// 4. Takes best offer automatically
+const trade = await client.takeOffer({
+  offerId: bestOffer.id,
+  amount: btcAmount.toString()
+});
+
+// 5. Receives XMR from Haveno network
+// 6. Sends XMR to user minus our fee
+```
+
+#### **🚀 Benefits vs Centralized Exchanges:**
+
+| Feature | Haveno DEX | Kraken/KuCoin |
+|---------|------------|----------------|
+| **Privacy** | 🔒 Maximum | ⚠️ Some tracking |
+| **Decentralization** | ✅ Full P2P | ❌ Centralized |
+| **Censorship Resistance** | ✅ High | ⚠️ Can be blocked |
+| **No KYC** | ✅ Anonymous | ❌ Required |
+| **Settlement** | 🪙 Monero | 💰 Fiat/Bank |
+| **Liquidity** | 📊 Market-driven | 📊 Exchange-controlled |
+
+#### **📦 Deployment with Haveno:**
+
+```bash
+# 1. Setup VPS (4GB RAM minimum)
+ssh root@YOUR_VPS_IP
+
+# 2. Install Haveno DEX
+wget https://raw.githubusercontent.com/BlockSavvy/xmrswap/main/deployment/haveno-setup.sh
+chmod +x haveno-setup.sh && sudo ./haveno-setup.sh
+
+# 3. Setup Haveno wallet (run GUI first)
+sudo -u haveno-user haveno  # Initial wallet setup
+setup-haveno-wallet        # Configuration helper
+
+# 4. Start Haveno daemon
+sudo systemctl start haveno-daemon
+
+# 5. Deploy XMR Swap app
+./deploy-app.sh
+```
+
+#### **🔐 Environment Variables:**
+
+```bash
+export HAVENO_ACCOUNT_ID="your_haveno_account"
+export HAVENO_PASSWORD="your_password"
+```
+
+#### **📊 API Methods Available:**
+
+- `getOffers()` - Fetch P2P trading offers
+- `takeOffer()` - Execute trades automatically
+- `getBalances()` - Wallet balance management
+- `getTrades()` - Trade history and status
+- `postOffer()` - Create your own offers
+
+### 🎊 **Why This is Revolutionary:**
+
+**Before:** Manual XMR purchasing on exchanges
+
+- Pay exchange fees
+- Subject to KYC/AML
+- Can be rate-limited
+- Centralized point of failure
+
+**After:** Automatic DEX replenishment
+
+- True P2P liquidity
+- No exchange fees for replenishment
+- Completely anonymous
+- Decentralized infrastructure
+- Real market rates from global P2P network
+
+### 🔗 **Haveno Resources:**
+
+- **Official Site**: <https://haveno.exchange>
+- **API Docs**: <https://docs.haveno.exchange/developers/api/>
+- **GitHub**: <https://github.com/haveno-dex/haveno-ts>
+- **Downloads**: <https://haveno.exchange/downloads/>
+
+---
+
+**🏆 Your XMR Swap now has TRUE decentralized liquidity through Haveno DEX!**

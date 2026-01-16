@@ -90,12 +90,21 @@ async function checkViaTorCheckService(): Promise<boolean> {
       signal: AbortSignal.timeout(5000),
     });
 
-    if (!response.ok) return false;
+    if (!response.ok) {
+      // Handle CORS or other network errors gracefully
+      console.warn('Tor check service returned non-OK status:', response.status);
+      return false;
+    }
 
     const data = await response.json();
     return data.IsTor === true;
   } catch (error) {
-    console.warn('Tor check service failed:', error);
+    // Handle CORS, network, or timeout errors gracefully
+    if (error instanceof Error && error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+      console.warn('Tor check service blocked by CORS or network policy (expected behavior)');
+    } else {
+      console.warn('Tor check service failed:', error);
+    }
     return false;
   }
 }

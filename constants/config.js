@@ -36,6 +36,7 @@ export const CONFIG = {
     MAX_SWAP_TIME: 30 * 60 * 1000, // 30 minutes
     CONFIRMATIONS_REQUIRED: 1,
     FEE_RATE: 0.015, // 1.5%
+    MIN_XMR_BALANCE: 5.0, // Minimum XMR to maintain in liquidity wallet
   },
 
   // Tor proxy settings (for privacy-focused requests)

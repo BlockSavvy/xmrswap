@@ -50,3 +50,4 @@ sensitive_config/
 
 expo-env.d.ts
 # @end expo-cli
+.vercel
